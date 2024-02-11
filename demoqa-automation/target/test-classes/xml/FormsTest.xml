@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="FormsTest" verbose="1">
+    <test name="FormsTest">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.demoqa.test.forms.PracticeFormTests"/>
+        </classes>
+    </test>
+</suite>
