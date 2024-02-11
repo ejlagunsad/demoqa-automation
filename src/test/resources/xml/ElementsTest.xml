@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="ElementsTest" verbose="1">
+    <test name="TextBoxTests">
+        <parameter name="browser" value="chrome"/>
+        <parameter name="name" value="EJ Lagunsad"/>
+        <parameter name="email" value="test@email.com"/>
+        <parameter name="currAdd" value="Current Address Test"/>
+        <parameter name="permaAdd" value="Permanent Address Test"/>
+        <classes>
+            <class name="com.demoqa.test.elements.TextBoxTests"/>
+        </classes>
+    </test>
+
+    <test name="CheckboxTests">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.demoqa.test.elements.CheckBoxTests"/>
+        </classes>
+    </test>
+</suite>
