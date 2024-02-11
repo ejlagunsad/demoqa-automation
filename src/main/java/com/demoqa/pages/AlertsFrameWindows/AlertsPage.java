@@ -1,6 +1,5 @@
 package com.demoqa.pages.AlertsFrameWindows;
 
-
 import com.demoqa.actions.BaseActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

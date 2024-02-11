@@ -68,10 +68,4 @@ public class FormsPage extends BaseActions {
     @FindBy(css = ".react-datepicker__month .react-datepicker__day")
     protected List<WebElement> dobDay;
 
-
-
-
-
-
-
 }

@@ -24,6 +24,4 @@ public class FramesActions extends FramesPage {
 
     }
 
-
-
 }
