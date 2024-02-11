@@ -36,8 +36,6 @@ public class FormsActions extends FormsPage {
         selectGender("male");
         type("1234567890", mobileNum);
         selectDoB();
-
-        System.out.println("test");
     }
 
     protected void selectGender(String gender) {
