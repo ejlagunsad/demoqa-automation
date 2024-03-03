@@ -36,6 +36,15 @@ public class FormsActions extends FormsPage {
         selectGender("male");
         type("1234567890", mobileNum);
         selectDoB();
+        //Select subject - To follow
+        String[] hobbies = {"Sports", "Reading", "Music"};
+        selectHobbies(hobbies);
+        uploadImg("HD1.jpg");
+        type("Test Address", currAddress);
+        selectStateAndCity();
+        verifySubmitFormInfo(); //add to verify table
+
+        System.out.println("test");
     }
 
     protected void selectGender(String gender) {
@@ -54,23 +63,21 @@ public class FormsActions extends FormsPage {
     }
 
     protected void selectDoB() {
-        dobField.click();
+        click(dobField);
         Assert.assertTrue(awaitForElementVisibility(datePickerCont),"Date of Birth date picker is not displayed");
-        selectDoBMonth(5);
+        selectDoBMonth("January");
         selectDoBYear();
         selectDoBDay();
     }
 
-    protected void selectDoBMonth(int month) {
-        dobMonth.click();
+    protected void selectDoBMonth(String month) {
+        click(dobMonth);
         Select dropdown = new Select(dobMonth);
-//        dropdown.selectByIndex(month);
-        String test = "january";
-        dropdown.selectByVisibleText(capitalizeFirstLetter(test));
+        dropdown.selectByVisibleText(capitalizeFirstLetter(month));
     }
 
     protected void selectDoBYear() {
-        dobYear.click();
+        click(dobYear);
         Select dropdown = new Select(dobYear);
         List<WebElement> years = dropdown.getOptions();
 
@@ -107,7 +114,87 @@ public class FormsActions extends FormsPage {
         if(!isSelected) {
             throw new Error("Invalid Year");
         }
+    }
+
+    protected void selectHobbies(String[] hobbies) {
+        Assert.assertTrue(awaitForElementVisibility(hobbiesCont), "Hobbies wrapper is not displayed");
+
+        for (String hobby : hobbies) {
+
+            boolean isHobbyFound = false;
+            for(WebElement hobbyLabel : hobbiesListLabel) {
+                if (hobby.equalsIgnoreCase(hobbyLabel.getText())) {
+                    hobbyLabel.click();
+                    isHobbyFound=true;
+                    break;
+                }
+            }
+
+            if(!isHobbyFound) {
+                throw new Error(hobby + " is not on Hobbies Option");
+            }
+        }
 
     }
 
+    protected void uploadImg(String fileName) {
+        String filePath = System.getProperty("user.dir") + "//src//test//resources//img//" + fileName;
+        type(filePath, picUpload);
+
+        if (!picUpload.getAttribute("value").contains(fileName)) {
+            throw new Error("Incorrect Uploaded Image");
+        }
+    }
+
+    protected void selectStateAndCity() {
+        Assert.assertTrue(awaitForElementVisibility(stateAndCityWrap), "State and City wrapper is not displayed");
+        selectState();
+        selectCity();
+    }
+
+    protected void selectState() {
+        click(state);
+        Assert.assertTrue(awaitForElementVisibility(stateOrCityList), "State List is not displayed");
+
+        boolean onList = false;
+        for(WebElement stateOption : stateListOptions) {
+            if (stateOption.getText().equalsIgnoreCase("NCR")) {
+                stateOption.click();
+                onList = true;
+                break;
+            }
+        }
+
+        if(!onList) {
+            throw new Error("Invalid State");
+        }
+    }
+
+    protected void selectCity() {
+        if (!city.isEnabled()) {
+            throw new Error("City Dropdown field is disabled");
+        }
+        click(city);
+        Assert.assertTrue(awaitForElementVisibility(stateOrCityList), "City List is not  displayed");
+
+        boolean onList = false;
+        for(WebElement cityOption : cityListOptions) {
+            if (cityOption.getText().equalsIgnoreCase("Delhi")) {
+                cityOption.click();
+                onList = true;
+                break;
+            }
+        }
+
+        if(!onList) {
+            throw new Error("Invalid City");
+        }
+    }
+
+    private void verifySubmitFormInfo() {
+        click(submitBtn);
+
+        Assert.assertTrue(awaitForElementVisibility(submitFormModal), "Submitted form modal is not displayed");
+
+    }
 }

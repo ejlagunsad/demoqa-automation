@@ -68,4 +68,42 @@ public class FormsPage extends BaseActions {
     @FindBy(css = ".react-datepicker__month .react-datepicker__day")
     protected List<WebElement> dobDay;
 
+    @FindBy(id = "hobbiesWrapper")
+    protected WebElement hobbiesCont;
+
+    @FindBy(css = "input[id*='hobbies']")
+    protected List<WebElement> hobbiesListCheckbox;
+
+    @FindBy(css = "label[for*='hobbies']")
+    protected List<WebElement> hobbiesListLabel;
+
+    @FindBy(id = "uploadPicture")
+    protected WebElement picUpload;
+
+    @FindBy(id = "currentAddress")
+    protected WebElement currAddress;
+
+    @FindBy(id = "stateCity-wrapper")
+    protected WebElement stateAndCityWrap;
+
+    @FindBy(id = "state")
+    protected WebElement state;
+
+    @FindBy(id = "city")
+    protected WebElement city;
+
+    @FindBy(css = ".css-11unzgr")
+    protected WebElement stateOrCityList;
+
+    @FindBy(css = "div[id*='react-select-3-option']")
+    protected List<WebElement> stateListOptions;
+
+    @FindBy(css = "div[id*='react-select-4-option']")
+    protected List<WebElement> cityListOptions;
+
+    @FindBy(id = "submit")
+    protected WebElement submitBtn;
+
+    @FindBy(css = ".modal-content")
+    protected WebElement submitFormModal;
 }
